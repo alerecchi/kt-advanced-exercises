@@ -21,7 +21,9 @@ fun getHtml(): Html = html {
         h1 { "This page is made with a DSL" }
         a("www.google.com") {"link to google"}
         p {
-
+            +"Mixed content with text"
+            a("www.google.com") {"a link"}
+            b { "and some bold text" }
         }
     }
 }

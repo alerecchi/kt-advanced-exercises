@@ -70,7 +70,21 @@ class PBuilder {
 
     val tags = mutableListOf<Tag>()
 
+    operator fun String.unaryPlus() {
+        tags.add(TextTag(this))
+    }
 
+    fun a(href: String, block: () -> String) {
+        tags.add(
+            A(href, block())
+        )
+    }
+
+    fun b(block: () -> String) {
+        tags.add(
+            B(block())
+        )
+    }
 
     fun build(): P {
         return P(tags)
