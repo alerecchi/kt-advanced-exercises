@@ -1,10 +1,10 @@
 # Kotlin Advanced Course - Exercises
 
-##Sections
-###DSL
-###Sequences
+## Sections
+### DSL
+### Sequences
 
-##Disclaimer
+## Disclaimer
 This repository is a constant **WIP**.
 
 The exercises that are already available are under constant revision to make them better, new exercises might be addeed 
