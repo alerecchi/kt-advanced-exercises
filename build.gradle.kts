@@ -4,14 +4,15 @@ plugins {
     kotlin("jvm") version "1.4.10"
 }
 group = "me.alessandro"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 
 repositories {
     mavenCentral()
 }
 dependencies {
-    testImplementation(kotlin("test-junit"))
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.10")
 }
+
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"
 }
