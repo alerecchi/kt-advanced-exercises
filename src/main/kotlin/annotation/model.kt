@@ -3,10 +3,13 @@ package annotation
 @Json
 data class UserProfile(
     val id: Int,
-    @JsonName("name") val athleteName: String,
+    @JsonName("name")
+    val athleteName: String,
     val gender: String,
-    @JsonSerializer() val athleteProfile: AthleteProfile,
-    @JsonExclude val email: String
+    @JsonSerializer
+    val athleteProfile: AthleteProfile,
+    @JsonExclude
+    val email: String
 )
 
 @Json
@@ -15,3 +18,4 @@ data class AthleteProfile(
     val height: String,
     val weight: Double
 )
+
