@@ -22,7 +22,7 @@ fun main() {
 }
 
 fun serialize(obj: Any): String {
-    val kClass = obj::class //alternativamente al .getter.call c'e' l'unsafe cast
+    val kClass = obj::class
 
     if (!kClass.hasAnnotation<Json>())
         throw IllegalArgumentException("Class is not annotated with @Json")
