@@ -1,9 +1,10 @@
 # Kotlin Advanced Course - Exercises
 
 ## Sections
-### DSL
 ### Sequences
+### Delegation
 ### Reflection + Annotations
+### DSL
 
 ## Disclaimer
 This repository is a constant **WIP**.
