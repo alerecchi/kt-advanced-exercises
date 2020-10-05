@@ -10,7 +10,6 @@ val df = SimpleDateFormat("MM/dd/yyyy hh:mm:ss aaa")
 
 fun getCrimeList(): List<Crime> {
     val listOfString = getListFromFile()
-    val df = SimpleDateFormat("MM/dd/yyyy hh:mm:ss aaa")
     return listOfString
         .drop(1)
         .map {
@@ -18,26 +17,17 @@ fun getCrimeList(): List<Crime> {
         }
 }
 
-fun getListFromFile(): List<String> {
-    return File("files/crimes.csv").readLines()
-}
-
-fun measureAndPrintTime(string: String, block: () -> Unit) {
-    measureTimeMillis {
-        block()
-    }.run {
-        println()
-        println("$string in ${this}ms")
-    }
-}
-
 fun getCrimeListLazy(): Sequence<Crime> {
     val reader = readFileLazy()
     return generateSequence {
         reader.readLine()
     }
-        .drop(1)
+        .drop(1)//Skipping the first line because it contains the columns name
         .map { it.toCrime() }
+}
+
+fun getListFromFile(): List<String> {
+    return File("files/crimes.csv").readLines()
 }
 
 fun readFileLazy(): BufferedReader {
@@ -62,4 +52,13 @@ fun String.toCrime(): Crime {
         latitude = fields[19].toDoubleOrNull(),
         longitude = fields[20].toDoubleOrNull()
     )
+}
+
+fun measureAndPrintTime(string: String, block: () -> Unit) {
+    measureTimeMillis {
+        block()
+    }.run {
+        println()
+        println("$string in ${this}ms")
+    }
 }
