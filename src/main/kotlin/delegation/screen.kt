@@ -3,10 +3,22 @@ package delegation
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
+/*
+
 enum class SpellCheckType { EMAIL, PASSWORD, TEXT }
 
-/*
-abstract class SpellCheckableScreen {
+abstract class TorchableScreen() {
+
+    init {
+        println("I can toggle the torch")
+    }
+
+    fun toggleTorch() {
+        TODO()
+    }
+}
+
+abstract class SpellCheckableScreen : TorchableScreen() {
 
     init {
         println("I can spellcheck")
@@ -17,18 +29,7 @@ abstract class SpellCheckableScreen {
     }
 }
 
-abstract class ScrollableScreen: SpellCheckableScreen() {
-
-    init {
-        println("I can scroll")
-    }
-
-    fun scroll(){
-        TODO()
-    }
-}
-
-class LoginScreen: ScrollableScreen() {
+class LoginScreen : SpellCheckableScreen() {
 
     private lateinit var _email: String
     private lateinit var _password: String
@@ -42,7 +43,7 @@ class LoginScreen: ScrollableScreen() {
     }
 }
 
-class RegistrationScreen: ScrollableScreen() {
+class RegistrationScreen : SpellCheckableScreen() {
 
     private lateinit var _name: String
     private lateinit var _surname: String
@@ -64,7 +65,14 @@ class RegistrationScreen: ScrollableScreen() {
     fun setPassword(string: String) {
         _password = spellCheck(string, SpellCheckType.PASSWORD)
     }
+}
+
+class FeedbackScreen: SpellCheckableScreen() {
+
+    ???
 }*/
+
+enum class SpellCheckType { EMAIL, PASSWORD, TEXT }
 
 class SpellCheckDelegate(private val spellCheckType: SpellCheckType) : ReadWriteProperty<Any, String> {
 
@@ -87,22 +95,23 @@ class SpellCheckDelegate(private val spellCheckType: SpellCheckType) : ReadWrite
     }
 }
 
-interface Scrollable {
-    fun scroll()
+interface Torchable {
+    fun toggleTorch()
 }
 
-class ScrollDelegate() : Scrollable {
+class TorchDelegate() : Torchable {
 
     init {
-        println("I can scroll")
+        println("I can toggle the torch")
     }
 
-    override fun scroll() {
+    override fun toggleTorch() {
         TODO("Not yet implemented")
     }
 }
 
-class LoginScreen(scrollDelegate: ScrollDelegate): Scrollable by scrollDelegate{
+class LoginScreen(torchDelegate: TorchDelegate): Torchable by torchDelegate{
     var email by SpellCheckDelegate(SpellCheckType.EMAIL)
     var password by SpellCheckDelegate(SpellCheckType.PASSWORD)
+
 }
