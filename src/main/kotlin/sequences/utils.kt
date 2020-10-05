@@ -2,7 +2,6 @@ package sequences
 
 import java.io.BufferedReader
 import java.io.File
-import java.io.InputStreamReader
 import java.text.SimpleDateFormat
 import kotlin.system.measureTimeMillis
 
@@ -11,7 +10,7 @@ val df = SimpleDateFormat("MM/dd/yyyy hh:mm:ss aaa")
 fun getCrimeList(): List<Crime> {
     val listOfString = getListFromFile()
     return listOfString
-        .drop(1)
+        .drop(1) //Skipping the first line because it contains the columns name
         .map {
             it.toCrime()
         }
@@ -22,7 +21,7 @@ fun getCrimeListLazy(): Sequence<Crime> {
     return generateSequence {
         reader.readLine()
     }
-        .drop(1)//Skipping the first line because it contains the columns name
+        .drop(1) //Skipping the first line because it contains the columns name
         .map { it.toCrime() }
 }
 
