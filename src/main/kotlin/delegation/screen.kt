@@ -110,7 +110,7 @@ class TorchDelegate() : Torchable {
     }
 }
 
-class LoginScreen(torchDelegate: TorchDelegate): Torchable by torchDelegate{
+class LoginScreen(torchDelegate: TorchDelegate) : Torchable by torchDelegate {
     var email by SpellCheckDelegate(SpellCheckType.EMAIL)
     var password by SpellCheckDelegate(SpellCheckType.PASSWORD)
 
